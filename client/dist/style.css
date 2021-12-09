@@ -7,7 +7,10 @@ body {
 
 .mlisters {
   font-size: large;
-
+  margin: 2%;
 }
 
 
+.submitter {
+  margin:2%;
+}

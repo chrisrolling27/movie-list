@@ -11,9 +11,9 @@ class MovieList extends React.Component {
 
   render() {
     //const movies = this.props.movies.filter()
-    var filtered = this.props.movies.filter(movie => movie.title.includes(this.props.query));
+    var filtered = this.props.movies.filter(movie => movie.title.toLowerCase().includes(this.props.query.toLowerCase()));
 
-    return  <div className="mlisters">
+    return <div className="mlisters">
       Number of movies: {this.props.movies.length}
 
       {filtered.map((movie, i) =>
@@ -21,7 +21,7 @@ class MovieList extends React.Component {
           key={i} />)}
 
     </div>
-    }
+  }
 
 }
 

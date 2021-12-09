@@ -21,22 +21,38 @@ class App extends React.Component {
       movies: [],
       searchtext: '',
       query: '',
+      movieadd: '',
     };
-    //this.handleClick = this.handleClick.bind(this);
+
     this.onChange = this.onChange.bind(this);
+    this.onChange2 = this.onChange2.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    //why doesnt onClick need this?
   }
 
   componentDidMount() {
-    this.setState({movies: moviesGiven})
+    this.setState({ movies: moviesGiven })
   }
 
   onChange(event) {
     this.setState({ searchtext: event.target.value });
+  }
 
+  onChange2(event) {
+    this.setState({ movieadd: event.target.value });
   }
 
   onClick(event) {
     this.setState({ query: this.state.searchtext });
+    event.preventDefault();
+  }
+
+  onSubmit(event) {
+
+    var newMovies = this.state.movies.slice();
+    var newOne = {title : event.target.value};
+    newMovies.push(newOne);
+    this.setState({movies : newMovies});
     event.preventDefault();
   }
 
@@ -45,6 +61,11 @@ class App extends React.Component {
     return (
 
       <div>
+        <form onClick={(event) => this.onSubmit(event)}>
+            <input type="text" value={this.state.movieadd} onChange={this.onChange2} placeholder={"Add movie title here"} />
+          <input type="submit" value="Add" className="submitter" />
+        </form>
+
         <form>
           <input type="text" value={this.state.searchtext} onChange={this.onChange} placeholder={"Search..."} />
           <button onClick={(event) => this.onClick(event)} >Go...</button>
@@ -52,7 +73,7 @@ class App extends React.Component {
         <div>  . </div>
 
 
-        <MovieList movies={this.state.movies} query={this.state.query}/>
+        <MovieList movies={this.state.movies} query={this.state.query} />
       </div>
     );
   }
