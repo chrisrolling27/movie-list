@@ -17,7 +17,6 @@ class App extends React.Component {
     super(props);
     // Don't call this.setState() here!
     this.state = {
-      counter: 42,
       movies: [],
       searchtext: '',
       query: '',
@@ -36,10 +35,12 @@ class App extends React.Component {
 
   onChange(event) {
     this.setState({ searchtext: event.target.value });
+    event.preventDefault();
   }
 
   onChange2(event) {
     this.setState({ movieadd: event.target.value });
+    event.preventDefault();
   }
 
   onClick(event) {
@@ -48,12 +49,15 @@ class App extends React.Component {
   }
 
   onSubmit(event) {
-
-    var newMovies = this.state.movies.slice();
-    var newOne = {title : event.target.value};
-    newMovies.push(newOne);
-    this.setState({movies : newMovies});
     event.preventDefault();
+    if (this.state.movieadd === '') {
+      alert("Please add an actual movie title!");
+    } else {
+      var newMovies = this.state.movies.slice();
+      var newOne = {title : this.state.movieadd};
+      newMovies.push(newOne);
+      this.setState({movies : newMovies});
+    }
   }
 
   render() {
@@ -61,9 +65,11 @@ class App extends React.Component {
     return (
 
       <div>
-        <form onClick={(event) => this.onSubmit(event)}>
+
+      Total movies: {this.state.movies.length}
+        <form onSubmit={(event) => this.onSubmit(event)}>
             <input type="text" value={this.state.movieadd} onChange={this.onChange2} placeholder={"Add movie title here"} />
-          <input type="submit" value="Add" className="submitter" />
+          <input type="submit" className="greenAddButton" />
         </form>
 
         <form>

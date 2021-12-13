@@ -2,7 +2,7 @@ import React from 'react';
 
 
 function MovieListEntries(props) {
-  return <div>{props.movie.title}</div>
+  return <ul>{props.movie.title}</ul>
 }
 
 
