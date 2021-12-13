@@ -70,7 +70,7 @@ class App extends React.Component {
           <input type="text" value={this.state.searchtext} onChange={this.onChange} placeholder={"Search..."} />
           <button onClick={(event) => this.onClick(event)} >Go...</button>
         </form>
-        <div>  . </div>
+        <span>&nbsp; </span>
 
 
         <MovieList movies={this.state.movies} query={this.state.query} />
