@@ -1,5 +1,6 @@
 import React from 'react';
 import MovieList from './MovieList.jsx';
+import axios from 'axios';
 
 
 var moviesGiven = [
@@ -26,11 +27,12 @@ class App extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onChange2 = this.onChange2.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    //why doesnt onClick need this?
   }
 
   componentDidMount() {
-    this.setState({ movies: moviesGiven })
+    axios.get('/movies').then((response) => {
+    this.setState({ movies: response.data })
+    })
   }
 
   onChange(event) {
@@ -53,7 +55,9 @@ class App extends React.Component {
     if (this.state.movieadd === '') {
       alert("Please add an actual movie title!");
     } else {
+
       var newMovies = this.state.movies.slice();
+
       var newOne = {title : this.state.movieadd};
       newMovies.push(newOne);
       this.setState({movies : newMovies});
