@@ -11,7 +11,7 @@
 -- ---
 --mysql -u root < schema.sql
 
-DROP DATABASE IF EXISTS `movies`;
+DROP DATABASE IF EXISTS 'movies';
 
 CREATE DATABASE `movies`;
 
