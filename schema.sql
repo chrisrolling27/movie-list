@@ -1,23 +1,10 @@
--- ---
--- Globals
--- ---
 
--- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
--- SET FOREIGN_KEY_CHECKS=0;
-
--- ---
--- Table 'movies'
---
--- ---
---mysql -u root < schema.sql
-
-DROP DATABASE IF EXISTS 'movies';
+DROP DATABASE IF EXISTS movies;
 
 CREATE DATABASE `movies`;
 
 USE `movies`;
 
-DROP TABLE IF EXISTS `movies`;
 
 CREATE TABLE `movies` (
   `id` INTEGER PRIMARY KEY AUTO_INCREMENT,

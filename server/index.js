@@ -7,9 +7,9 @@ const db = require('../database/connection.js')
 
 app.use(express.json());
 
-db.connect((err)=>{
+db.connect((err) => {
   if (!err) {
-    console.log('Connected to grocery database.');
+    console.log('Connected to movie database.');
   }
 })
 
@@ -25,13 +25,13 @@ app.listen(PORT, () => {
 
 app.get('/movies', (req, res) => {
   var querystring = 'SELECT * FROM movies';
-db.query(querystring, (err, results) => {
-  if (err) {
-    console.log(err);
-  } else {
-    res.status(200).send(results);
-  }
-})
+  db.query(querystring, (err, results) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.status(200).send(results);
+    }
+  })
 })
 
 
