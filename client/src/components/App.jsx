@@ -55,9 +55,9 @@ class App extends React.Component {
     if (this.state.movieadd === '') {
       alert("Please add an actual movie title!");
     } else {
-
+      axios.post('/movies', {"title" : this.state.movieadd});
+      //should I handle the state "locally" or make a new GET request to keep the DB as source of truth?
       var newMovies = this.state.movies.slice();
-
       var newOne = {title : this.state.movieadd};
       newMovies.push(newOne);
       this.setState({movies : newMovies});
@@ -69,7 +69,6 @@ class App extends React.Component {
     return (
 
       <div>
-
       Total movies: {this.state.movies.length}
         <form onSubmit={(event) => this.onSubmit(event)}>
             <input type="text" value={this.state.movieadd} onChange={this.onChange2} placeholder={"Add movie title here"} />

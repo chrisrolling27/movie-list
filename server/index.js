@@ -4,8 +4,8 @@ const PORT = 3000;
 const path = require('path')
 const db = require('../database/connection.js')
 
-express.json();
 
+app.use(express.json());
 
 db.connect((err)=>{
   if (!err) {
@@ -13,14 +13,14 @@ db.connect((err)=>{
   }
 })
 
+
+
 app.use(express.static('client/dist'));
 
 
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
 })
-
-
 
 
 app.get('/movies', (req, res) => {
@@ -37,8 +37,8 @@ db.query(querystring, (err, results) => {
 
 app.post('/movies', (req, res) => {
 
-  //var querystring = `INSERT INTO movies (title) VALUES ("${req.body.title}")`;
-
+  var querystring = `INSERT INTO movies (title) VALUES ("${req.body.title}")`;
+  console.log('qstring!', querystring);
   db.query(querystring, (err, results) => {
     if (err) {
       res.status(500).send(err);

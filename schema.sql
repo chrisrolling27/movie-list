@@ -9,8 +9,13 @@
 -- Table 'movies'
 --
 -- ---
+--mysql -u root < schema.sql
 
-USE movies;
+DROP DATABASE IF EXISTS `movies`;
+
+CREATE DATABASE `movies`;
+
+USE `movies`;
 
 DROP TABLE IF EXISTS `movies`;
 
