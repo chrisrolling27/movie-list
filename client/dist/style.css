@@ -10,10 +10,15 @@ body {
   margin: 2%;
 }
 
-.nay {
- color:brown;
+.watchButton {
+ color:blue;
+ margin-top:2%;
 }
 
+.watchNotButton {
+  color:rgb(255, 30, 0);
+  margin-top:2%;
+ }
 
 .greenAddButton {
   margin:1%;

@@ -6,7 +6,7 @@ class MovieListEntries extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      watched: false,
+      watched: props.movie.watched,
       title: props.movie.title,
       id: props.movie.id
     }
@@ -14,15 +14,13 @@ class MovieListEntries extends React.Component {
     this.watchClick = this.watchClick.bind(this);
   }
 
-
-
   watchClick(event) {
     event.preventDefault();
     console.log('watch clicked');
-    axios.put('/movies', {id: this.state.id})
-    .then( (response) => {
-      this.setState({ watched: !this.state.watched });
-    })
+    axios.put('/movies', { id: this.state.id })
+      .then((response) => {
+        this.setState({ watched: !this.state.watched });
+      })
   }
 
 
@@ -30,7 +28,7 @@ class MovieListEntries extends React.Component {
     return (
       <div onClick={(event) => this.watchClick(event)}  >
 
-        <ul>  {this.state.title}  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; {this.state.watched ? 'Seen it!' : 'Not Yet...'} </ul>
+        <ul>  {this.state.title}  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; {this.state.watched ? 'Seen it!' : 'Not Yet'} </ul>
 
       </div>
     )

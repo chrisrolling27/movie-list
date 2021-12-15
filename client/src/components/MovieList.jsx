@@ -12,7 +12,6 @@ class MovieList extends React.Component {
   }
 
 
-
   render() {
 
     var filtered = this.props.movies.filter(movie => movie.title.toLowerCase().includes(this.props.query.toLowerCase()));

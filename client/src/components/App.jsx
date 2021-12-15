@@ -27,6 +27,8 @@ class App extends React.Component {
     this.onChange = this.onChange.bind(this);
     this.onChange2 = this.onChange2.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.watchButton = this.watchButton.bind(this);
+    this.watchNotButton = this.watchNotButton.bind(this);
   }
 
   componentDidMount() {
@@ -55,15 +57,29 @@ class App extends React.Component {
     if (this.state.movieadd === '') {
       alert("Please add an actual movie title!");
     } else {
-      axios.post('/movies', { title: this.state.movieadd, watched: 0 })
+      axios.post('/movies', { title: this.state.movieadd, watched: false })
         .then((response) => {
           var newMovies = this.state.movies.slice();
-          var newOne = { id: response.data.insertId, title: this.state.movieadd, watched: 0 };
+          var newOne = { id: response.data.insertId, title: this.state.movieadd, watched: false };
           newMovies.push(newOne);
           this.setState({ movies: newMovies });
         }
         )
     }
+  }
+
+  watchButton() {
+    event.preventDefault();
+    //console.log(this.state.movies[0].watched)
+    //var watched = this.state.movies.filter(movie =>
+      //movie.watched === 1)
+    console.log(watched);
+  }
+
+  watchNotButton() {
+    event.preventDefault();
+    console.log('watch not toggled')
+
   }
 
 
@@ -82,7 +98,8 @@ class App extends React.Component {
           <button onClick={(event) => this.onClick(event)} >Go...</button>
         </form>
         <span>&nbsp; </span>
-
+        <button className='watchButton' onClick={this.watchButton}> Watched </button>
+        <button className='watchNotButton' onClick={this.watchNotButton}> Not Watched </button>
 
         <MovieList movies={this.state.movies} query={this.state.query} />
       </div>
