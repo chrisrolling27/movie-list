@@ -9,7 +9,6 @@ class MovieList extends React.Component {
 
     }
 
-
   }
 
 
@@ -19,7 +18,7 @@ class MovieList extends React.Component {
     var filtered = this.props.movies.filter(movie => movie.title.toLowerCase().includes(this.props.query.toLowerCase()));
 
 
-    return <div className="mlisters"  >
+    return <div className="mlisters" >
 
       {filtered.map((movie) =>
         <MovieListEntries movie={movie}

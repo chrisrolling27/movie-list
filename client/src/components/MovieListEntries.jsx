@@ -15,12 +15,14 @@ class MovieListEntries extends React.Component {
   }
 
 
+
   watchClick(event) {
     event.preventDefault();
     console.log('watch clicked');
-    axios.put('/movies', {id: this.props.id})
-    .then(//setstate!
-      console.log('beep'))
+    axios.put('/movies', {id: this.state.id})
+    .then( (response) => {
+      this.setState({ watched: !this.state.watched });
+    })
   }
 
 

@@ -31,7 +31,7 @@ class App extends React.Component {
 
   componentDidMount() {
     axios.get('/movies').then((response) => {
-    this.setState({ movies: response.data })
+      this.setState({ movies: response.data })
     })
   }
 
@@ -55,28 +55,25 @@ class App extends React.Component {
     if (this.state.movieadd === '') {
       alert("Please add an actual movie title!");
     } else {
-      axios.post('/movies', {"title" : this.state.movieadd})
-      .then( (response) => {
-
-        var newMovies = this.state.movies.slice();
-        var newOne = {id: response.data.insertId, title : this.state.movieadd};
-        newMovies.push(newOne);
-        this.setState({movies : newMovies});
-      }
-      )
-      //should I handle the state "locally" or make a new GET request to keep the DB as source of truth?
-
+      axios.post('/movies', { title: this.state.movieadd, watched: 0 })
+        .then((response) => {
+          var newMovies = this.state.movies.slice();
+          var newOne = { id: response.data.insertId, title: this.state.movieadd, watched: 0 };
+          newMovies.push(newOne);
+          this.setState({ movies: newMovies });
+        }
+        )
     }
   }
 
-  render() {
 
+  render() {
     return (
 
       <div>
-      Total movies: {this.state.movies.length}
+        Total movies: {this.state.movies.length}
         <form onSubmit={(event) => this.onSubmit(event)}>
-            <input type="text" value={this.state.movieadd} onChange={this.onChange2} placeholder={"Add movie title here"} />
+          <input type="text" value={this.state.movieadd} onChange={this.onChange2} placeholder={"Add movie title here"} />
           <input type="submit" className="greenAddButton" />
         </form>
 

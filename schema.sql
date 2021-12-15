@@ -1,4 +1,3 @@
-
 DROP DATABASE IF EXISTS movies;
 
 CREATE DATABASE `movies`;
@@ -14,5 +13,5 @@ CREATE TABLE `movies` (
 
 ALTER TABLE `movies` ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-INSERT INTO `movies` (`id`,`title`) VALUES
+INSERT INTO `movies` (`id`,`title`, `watched`) VALUES
 (1,'Gladiator', false);
