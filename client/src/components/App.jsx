@@ -57,9 +57,9 @@ class App extends React.Component {
     } else {
       axios.post('/movies', {"title" : this.state.movieadd})
       .then( (response) => {
-        console.log(response);
+
         var newMovies = this.state.movies.slice();
-        var newOne = {title : this.state.movieadd};
+        var newOne = {id: response.data.insertId, title : this.state.movieadd};
         newMovies.push(newOne);
         this.setState({movies : newMovies});
       }

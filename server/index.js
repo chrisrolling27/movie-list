@@ -24,6 +24,7 @@ app.listen(PORT, () => {
 
 
 app.get('/movies', (req, res) => {
+
   var querystring = 'SELECT * FROM movies';
   db.query(querystring, (err, results) => {
     if (err) {
@@ -36,7 +37,6 @@ app.get('/movies', (req, res) => {
 
 
 app.post('/movies', (req, res) => {
-
   var querystring = `INSERT INTO movies (title) VALUES ("${req.body.title}")`;
   console.log('qstring!', querystring);
   db.query(querystring, (err, results) => {
@@ -47,4 +47,20 @@ app.post('/movies', (req, res) => {
       res.status(201).send(results);
     }
   })
+})
+
+
+
+app.put('/movies', (req, res) => {
+
+res.status(204).send();
+var querystring = `UPDATE movies SET (watched = NOT watched) WHERE id = ${req.body.id}`;
+console.log(querystring);
+db.query(querystring, (err, results) => {
+  if (err) {
+    res.status(500).send(err);
+  } else {
+    res.status(204).send(results);
+  }
+})
 })

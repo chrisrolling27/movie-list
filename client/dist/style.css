@@ -10,6 +10,10 @@ body {
   margin: 2%;
 }
 
+.nay {
+ color:brown;
+}
+
 
 .greenAddButton {
   margin:1%;
@@ -25,5 +29,5 @@ ul {
   padding-left: 15px;
 
   border-radius: 5px;
-
+  white-space: pre-wrap;
 }
