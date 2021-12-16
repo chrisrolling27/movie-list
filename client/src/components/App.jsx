@@ -70,16 +70,18 @@ class App extends React.Component {
 
   watchButton() {
     event.preventDefault();
-    //console.log(this.state.movies[0].watched)
-    //var watched = this.state.movies.filter(movie =>
-      //movie.watched === 1)
-    console.log(watched);
+    axios.get('/movies/watched')
+    .then((response) => {
+      this.setState({ movies : response.data[1]})
+    })
   }
 
   watchNotButton() {
     event.preventDefault();
-    console.log('watch not toggled')
-
+    axios.get('/movies/watched')
+    .then((response) => {
+      this.setState({ movies : response.data[0]})
+    })
   }
 
 

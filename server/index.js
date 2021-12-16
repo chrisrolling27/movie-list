@@ -24,13 +24,6 @@ app.listen(PORT, () => {
 
 
 
-
-
-
-
-
-
-
 app.get('/movies', (req, res) => {
 
   var querystring = 'SELECT * FROM movies';
@@ -58,7 +51,6 @@ app.post('/movies', (req, res) => {
 })
 
 
-
 app.put('/movies', (req, res) => {
 var querystring = `UPDATE movies SET watched = NOT watched WHERE id = ${req.body.id}`;
 console.log('Put query request:', querystring);
@@ -78,8 +70,17 @@ app.get('/movies/watched', (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      //FILTER
-      res.status(200).send(results);
+      var ret = [ [], [] ];
+
+      for (var i = 0; i < results.length; i++) {
+        if (results[i].watched === 0) {
+          ret[0].push(results[i])
+        } else {
+          ret[1].push(results[i])
+        }
+      }
+      //console.log(ret);
+      res.status(200).send(ret);
     }
   })
 })
